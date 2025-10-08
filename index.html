@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vanishing Record - Database Mystery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn close"></span>
+                <span class="btn minimize"></span>
+                <span class="btn maximize"></span>
+            </div>
+            <div class="terminal-title">Database Investigation Terminal</div>
+        </div>
+        
+        <div class="terminal-body">
+            <div class="intro-screen" id="introScreen">
+                <div class="ascii-art">
+                    <pre>
+    ████████╗██╗  ██╗███████╗    ██╗   ██╗ █████╗ ███╗   ██╗██╗███████╗██╗  ██╗██╗███╗   ██╗ ██████╗ 
+    ╚══██╔══╝██║  ██║██╔════╝    ██║   ██║██╔══██╗████╗  ██║██║██╔════╝██║  ██║██║████╗  ██║██╔════╝ 
+       ██║   ███████║█████╗      ██║   ██║███████║██╔██╗ ██║██║███████╗███████║██║██╔██╗ ██║██║  ███╗
+       ██║   ██╔══██║██╔══╝      ╚██╗ ██╔╝██╔══██║██║╚██╗██║██║╚════██║██╔══██║██║██║╚██╗██║██║   ██║
+       ██║   ██║  ██║███████╗     ╚████╔╝ ██║  ██║██║ ╚████║██║███████║██║  ██║██║██║ ╚████║╚██████╔╝
+       ╚═╝   ╚═╝  ╚═╝╚══════╝      ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
+                    </pre>
+                </div>
+                <div class="subtitle">A Database Mystery</div>
+                <div class="story-intro">
+                    <p>Welcome to the College Database Investigation Terminal.</p>
+                    <p>A student record has mysteriously vanished from the attendance database.</p>
+                    <p>No deletion logs exist. No backup corruption detected.</p>
+                    <p>Your mission: Trace the disappearance through SQL clues.</p>
+                </div>
+                <button class="start-btn" onclick="startGame()">BEGIN INVESTIGATION</button>
+            </div>
+
+            <div class="game-screen" id="gameScreen" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                    <span class="progress-text" id="progressText">Question 1 of 5</span>
+                </div>
+                
+                <div class="question-container">
+                    <div class="database-icon" id="databaseIcon">🗄️</div>
+                    <div class="question-text" id="questionText"></div>
+                    <div class="clue-text" id="clueText"></div>
+                </div>
+                
+                <div class="input-container">
+                    <span class="prompt">investigator@database:~$ </span>
+                    <input type="text" id="answerInput" class="answer-input" placeholder="Enter your answer...">
+                    <button class="submit-btn" onclick="submitAnswer()">EXECUTE</button>
+                </div>
+                
+                <div class="feedback" id="feedback"></div>
+                
+                <div class="score-display">
+                    Score: <span id="score">0</span> | Clues Found: <span id="cluesFound">0</span>/5 | Time: <span id="timer">00:00</span>
+                </div>
+            </div>
+
+            <div class="final-reveal" id="finalReveal" style="display: none;">
+                <div class="reveal-content">
+                    <h2>🔍 CASE SOLVED!</h2>
+                    <div class="solution-text">
+                        <p>The record wasn't deleted — it was trapped in an unmerged .bak file!</p>
+                        <p>During a database maintenance operation, a backup file was created but never properly merged back into the main database.</p>
+                        <p>The student's attendance record exists in the backup but is invisible to the current system.</p>
+                    </div>
+                    <div class="final-score">
+                        <p>Final Score: <span id="finalScore">0</span></p>
+                        <p>Investigation Time: <span id="finalTime">00:00</span></p>
+                        <p>Investigation Complete!</p>
+                    </div>
+                    <button class="restart-btn" onclick="restartGame()">INVESTIGATE ANOTHER CASE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
